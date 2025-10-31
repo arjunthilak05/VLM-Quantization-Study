@@ -1,0 +1,102 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Model Checkpoints and Weights
+experiments/checkpoints/*.pt
+experiments/checkpoints/*.pth
+experiments/checkpoints/*.bin
+experiments/checkpoints/*.safetensors
+*.ckpt
+models/weights/
+
+# Experiment Outputs
+experiments/results/*.json
+experiments/results/*.csv
+experiments/logs/*.log
+experiments/logs/wandb/
+experiments/logs/mlruns/
+
+# Data
+data/raw/
+data/processed/
+*.h5
+*.hdf5
+
+# Temporary Files
+*.tmp
+*.temp
+.cache/
+
+# Environment Variables
+.env
+.env.local
+
+# Coverage Reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# pytest
+.pytest_cache/
+
+# Distribution / Packaging
+*.whl
+
+# Documentation
+docs/_build/
+
+# System Files
+Thumbs.db
+.DS_Store
+
+# Weights & Biases
+wandb/
+
+# MLflow
+mlruns/
+
+# Large Model Files (keep structure but ignore weights)
+*.bin
+*.safetensors
+!configs/*.bin

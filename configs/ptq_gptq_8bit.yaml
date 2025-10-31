@@ -1,0 +1,52 @@
+# GPTQ 8-bit Post-Training Quantization Configuration
+
+# Model configuration
+model:
+  name: "llava-phi-3b"
+  path: "xtuner/llava-phi-3-mini-hf"
+  device_map: "auto"
+  trust_remote_code: true
+
+# Quantization configuration
+quantization:
+  method: "gptq"
+  bits: 8
+  group_size: 128
+  desc_act: false
+  use_triton: false
+
+# Calibration configuration
+calibration:
+  num_samples: 512
+  batch_size: 1
+  max_length: 2048
+  dataset: "coco"
+
+# Evaluation configuration
+evaluation:
+  benchmarks:
+    - "VQAv2"
+    - "POPE"
+    - "MME"
+    - "MMBench"
+  batch_size: 1
+  output_dir: "experiments/results/ptq_gptq_8bit"
+
+# Efficiency benchmarking
+efficiency:
+  benchmark_speed: true
+  num_samples: 100
+  max_length: 512
+
+# Output configuration
+output:
+  save_dir: "experiments/checkpoints/ptq_gptq_8bit"
+  save_quantized: true
+  save_results: true
+
+# Logging configuration
+logging:
+  level: "INFO"
+  log_dir: "experiments/logs"
+  log_to_file: true
+  log_to_console: true

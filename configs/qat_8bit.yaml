@@ -1,0 +1,68 @@
+# QAT 8-bit Quantization-Aware Training Configuration
+
+# Model configuration
+model:
+  name: "llava-phi-3b"
+  path: "xtuner/llava-phi-3-mini-hf"
+  device_map: "auto"
+  trust_remote_code: true
+
+# QAT configuration
+qat:
+  bits: 8
+  weight_bits: 8
+  activation_bits: 8
+  quantization_scheme: "symmetric"
+  per_channel: true
+  block_wise: true
+  freeze_non_quantized: false
+  use_fake_quantization: true
+
+# Training configuration
+training:
+  learning_rate: 1.0e-5
+  num_epochs: 2
+  batch_size: 4
+  gradient_accumulation_steps: 4
+  warmup_steps: 100
+  max_grad_norm: 1.0
+  mixed_precision: "fp16"
+
+# Data configuration
+data:
+  train_dataset: "coco"
+  eval_dataset: "coco_val"
+  max_length: 2048
+  num_workers: 4
+
+# Evaluation configuration
+evaluation:
+  benchmarks:
+    - "VQAv2"
+    - "POPE"
+    - "MME"
+    - "MMBench"
+  eval_steps: 100
+  batch_size: 1
+  output_dir: "experiments/results/qat_8bit"
+
+# Efficiency benchmarking
+efficiency:
+  benchmark_speed: true
+  num_samples: 100
+  max_length: 512
+
+# Output configuration
+output:
+  save_dir: "experiments/checkpoints/qat_8bit"
+  save_steps: 500
+  save_quantized: true
+  save_results: true
+
+# Logging configuration
+logging:
+  level: "INFO"
+  log_dir: "experiments/logs"
+  log_to_file: true
+  log_to_console: true
+  logging_steps: 10
